@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/media/develop2/morandell/lib/ezutils/classes'
+let g:netrw_dirhist_2='/media/develop2/morandell/extension/morandell/design/morandell/stylesheets'
+let g:netrw_dirhist_3='/media/develop2/morandell/extension/morandell/design/morandell'
+let g:netrw_dirhist_4='/media/develop2/morandell/extension/morandell/design/morandell/images'

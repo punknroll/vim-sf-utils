@@ -1,0 +1,17 @@
+[ContentSettings]
+ViewCaching=disabled
+
+[DebugSettings]
+DebugOutput=enabled
+DebugRedirection=disabled
+
+[TemplateSettings]
+Debug=enabled
+ShowXHTMLCode=disabled
+ShowUsedTemplates=enabled
+TemplateCompile=disabled
+TemplateCache=disabled
+DevelopmentMode=enabled
+
+[OverrideSettings]
+Cache=disabled

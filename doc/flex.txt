@@ -242,8 +242,8 @@ utilizing one of the functions within the mxml and actionscript
 ftplugins. >
     augroup myProject
         au!
-        autocmd bufread */project/* 
-                    \ let root_dir = substitute(fnamemodify(expand("<afile>"), ':p:h'), 'project\zs.*', '', '') |
+        autocmd bufread */project1/* 
+                    \ let root_dir = substitute(fnamemodify(expand("<afile>"), ':p:h'), 'project1\zs.*', '', '') |
                     \ if exists("*AddSearchPath_".&ft) | 
                     \     call AddSearchPath_{&ft}(root_dir.'/src') | 
                     \ endif
@@ -251,10 +251,10 @@ ftplugins. >
 
 Breaking down the autocmd:
     For any file opened under the myProject (C:\project\src): >
-        autocmd bufread */project/* 
+        autocmd bufread */project2/* 
 <
     Get the directory of the file just opened: >
-                    \ let root_dir = substitute(fnamemodify(expand("<afile>"), ':p:h'), 'project\zs.*', '', '') |
+                    \ let root_dir = substitute(fnamemodify(expand("<afile>"), ':p:h'), 'project2\zs.*', '', '') |
 <
     &ft = filetype, this will be either mxml or actionscript.  If the
     ftplugin successfully created the required function, call it passing

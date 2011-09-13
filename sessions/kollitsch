@@ -126,13 +126,6 @@ vnoremap ` :call ExecMap('`', 'v')
 nmap gx <Plug>NetrwBrowseX
 map g :cs find 0 =expand("<cword>")
 map g :cs find 3 =expand("<cword>")
-nnoremap <SNR>53_AddSnippet :%AddSnippet
-vnoremap <SNR>53_AddSnippet :AddSnippet
-nnoremap <SNR>53_AppendSnippet :AppendSnippet
-nnoremap <SNR>53_InsertSnippet :InsertSnippet
-nnoremap <SNR>53_EditSnippet :EditSnippet
-nnoremap <SNR>53_DeleteSnippet :DeleteSnippet
-nnoremap <SNR>53_ListSnippets :ListSnippets
 nmap <silent> <Plug> i
 nmap <F1> <Plug>Tex_Help
 nnoremap <silent> <Plug>Tex_FastEnvironmentInsert i=Tex_FastEnvironmentInsert("no")
@@ -194,24 +187,23 @@ nmap <C-Space>s :scs find s =expand("<cword>")
 map <F5> :setlocal spell! spelllang=en_us
 map <S-Insert> <MiddleMouse>
 imap <NL> <Plug>IMAP_JumpForward
-iabbr ezfe {foreach __ as $k => $val}{/foreach}
-iabbr ezfes {foreach __ as $k => $val sequence array( __ ) as $seq}{/foreach}
-iabbr ezfcn fetch( content, node, hash( 'node_id', ) )3hi
-iabbr ezfcl fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfcls fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfcla fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfclas fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfclsa fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfclc fetch( content, list_count, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ) ) )
-iabbr ezfclca fetch( content, list_count, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'attribute_filter', array( __ ) ) )
-iabbr ezfct fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfcts fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfcta fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfctas fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfctsa fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
-iabbr ezfctc fetch( content, tree_count, hash( 'parent_node_id', __,'class_filter_type', include,'class_filter_array', array( __ )  ) )
 iabbr ezfctca fetch( content, tree_count, hash( 'parent_node_id', __ ,'attribute_filter', array( __ ) ) )
-iabbr ezas {$|attribute(show)}5bi
+iabbr ezfctc fetch( content, tree_count, hash( 'parent_node_id', __,'class_filter_type', include,'class_filter_array', array( __ )  ) )
+iabbr ezfctsa fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfctas fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfcta fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfcts fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfct fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfclca fetch( content, list_count, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'attribute_filter', array( __ ) ) )
+iabbr ezfclc fetch( content, list_count, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ) ) )
+iabbr ezfclsa fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfclas fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfcla fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfcls fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfcl fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
+iabbr ezfcn fetch( content, node, hash( 'node_id', ) )3hi
+iabbr ezfes {foreach __ as $k => $val sequence array( __ ) as $seq}{/foreach}
+iabbr ezfe {foreach __ as $k => $val}{/foreach}
 abbr cv Ezcv
 let &cpo=s:cpo_save
 unlet s:cpo_save
@@ -220,7 +212,6 @@ set balloonexpr=eclim#util#Balloon(eclim#util#GetLineError(line('.')))
 set cscopeprg=/usr/local/bin/cscope
 set cscopetag
 set cscopeverbose
-set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set foldclose=all
 set foldlevelstart=20
@@ -235,7 +226,7 @@ set iskeyword=@,48-57,_,192-255,-,$
 set keywordprg=:help
 set laststatus=2
 set mouse=a
-set omnifunc=csscomplete#CompleteCSS
+set omnifunc=phpcomplete#CompletePHP
 set path=,,
 set printoptions=paper:a4
 set ruler
@@ -247,41 +238,31 @@ set showcmd
 set softtabstop=4
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set tabstop=4
-set tags=./tags,~/.vimtags
 set termencoding=utf-8
 set window=55
 set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd /media/develop2/tiroli.at
+cd /media/develop2/kollitsch
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +49 extension/tiroler_at/design/ezwebin/templates/ajax/suche_berater.tpl
-badd +513 extension/tiroler_at/design/ezwebin/override/templates/full/kontakt_ansprechpartner.tpl
-badd +22 extension/tiroler_at/design/ezwebin/templates/ajax/suche_abteilungen.tpl
-badd +7 extension/tiroler_at/design/ezwebin/templates/node/view/searchresult-no-kids.tpl
-badd +46 extension/tiroler_at/design/ezwebin/override/templates/searchresult/politischer_bezirk.tpl
-badd +24 extension/tiroler_at/design/ezwebin/override/templates/searchresult/abteilung.tpl
-badd +179 settings/override/viewcache.ini.append.php
-badd +16 extension/tiroler_at/design/ezwebin/override/templates/searchresult/berater.tpl
-badd +121 extension/tiroler_at/design/ezwebin/override/templates/full/versicherung_detail.tpl
-badd +14 extension/tiroler_at/design/ezwebin/override/templates/node/view/personenteaser.tpl
-badd +5 extension/tiroler_at/design/ezwebin/templates/content/view/person_embed.tpl
-badd +6 extension/tiroler_at/design/ezwebin/override/templates/content/view/embed_produkt.tpl
-badd +7 extension/tiroler_at/design/ezwebin/override/templates/node/view/risikocheck_versicherung.tpl
-badd +212 extension/tiroler_at/design/ezwebin/stylesheets/tiroler2_at.css
-badd +0 extension/tiroler_at/design/ezwebin/stylesheets/tiroler_at.css
+badd +0 katalog.php
 silent! argdel *
-edit extension/tiroler_at/design/ezwebin/stylesheets/tiroler_at.css
+edit katalog.php
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
+onoremap <buffer> <silent> [[ ?\(.*\%#\)\@!\_^\s*\zs\(\(abstract\s\+\|final\s\+\|private\s\+\|protected\s\+\|public\s\+\|static\s\+\)*function\|\(abstract\s\+\|final\s\+\)*class\|interface\)?:nohls
+nnoremap <buffer> <silent> [[ ?\(.*\%#\)\@!\_^\s*\zs\(\(abstract\s\+\|final\s\+\|private\s\+\|protected\s\+\|public\s\+\|static\s\+\)*function\|\(abstract\s\+\|final\s\+\)*class\|interface\)?:nohls
+onoremap <buffer> <silent> ]] /\(.*\%#\)\@!\_^\s*\zs\(\(abstract\s\+\|final\s\+\|private\s\+\|protected\s\+\|public\s\+\|static\s\+\)*function\|\(abstract\s\+\|final\s\+\)*class\|interface\)/:nohls
+nnoremap <buffer> <silent> ]] /\(.*\%#\)\@!\_^\s*\zs\(\(abstract\s\+\|final\s\+\|private\s\+\|protected\s\+\|public\s\+\|static\s\+\)*function\|\(abstract\s\+\|final\s\+\)*class\|interface\)/:nohls
+imap <buffer> <silent> / =eclim#sgml#util#CompleteEndTag()
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -295,12 +276,12 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/
+setlocal comments=s1:/*,mb:*,ex:*/,://,:#
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
-setlocal completefunc=eclim#css#complete#CodeComplete
+setlocal completefunc=eclim#php#complete#CodeComplete
 setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
@@ -311,9 +292,9 @@ setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
-setlocal expandtab
-if &filetype != 'css'
-setlocal filetype=css
+setlocal noexpandtab
+if &filetype != 'php'
+setlocal filetype=php
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -326,15 +307,15 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=croql
+setlocal formatoptions=qrowcb
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
-setlocal include=^\\s*@import\\s\\+\\%(url(\\)\\=
+setlocal include=\\(require\\|include\\)\\(_once\\)\\?
 setlocal includeexpr=
-setlocal indentexpr=EclimGetCssIndent(v:lnum)
-setlocal indentkeys=0{,0},!^F,o,O
+setlocal indentexpr=EclimGetPhpHtmlIndent(v:lnum)
+setlocal indentkeys=0{,0},0),:,!^F,o,O,e,*<Return>,=?>,=<?,=*/,<>>,<bs>,{,}
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255,-,$
 setlocal keywordprg=
@@ -342,14 +323,14 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal nolist
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
+setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=csscomplete#CompleteCSS
+setlocal omnifunc=phpcomplete#CompletePHP
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -371,8 +352,8 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'css'
-setlocal syntax=css
+if &syntax != 'php'
+setlocal syntax=php
 endif
 setlocal tabstop=4
 setlocal tags=
@@ -384,13 +365,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1104 - ((5 * winheight(0) + 27) / 54)
+let s:l = 36 - ((11 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1104
+36
 normal! 0
-lcd /media/develop2/tiroli.at
+lcd /media/develop2/kollitsch
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

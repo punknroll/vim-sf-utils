@@ -15,12 +15,8 @@ inoremap <silent> <Plug>Tex_Completion :call Tex_Complete("default","text")
 imap <silent> <Plug>IMAP_JumpBack =IMAP_Jumpfunc('b', 0)
 imap <silent> <Plug>IMAP_JumpForward =IMAP_Jumpfunc('', 0)
 map! <S-Insert> <MiddleMouse>
-vnoremap  :call PhpAlign()
-vnoremap  :call PhpUnComment()
 vmap <NL> <Plug>IMAP_JumpForward
 nmap <NL> <Plug>IMAP_JumpForward
-vnoremap  :call PhpDocRange()
-nnoremap  :call PhpDocSingle()
 nmap d :cs find d =expand("<cword>")
 nmap i :cs find i ^=expand("<cfile>")$
 nmap f :cs find f =expand("<cfile>")
@@ -29,8 +25,6 @@ nmap t :cs find t =expand("<cword>")
 nmap c :cs find c =expand("<cword>")
 nmap g :cs find g =expand("<cword>")
 nmap s :cs find s =expand("<cword>")
-vnoremap ' "zdi'z'
-vnoremap ( "zdi(z)
 vnoremap ,li :call VEnclose('', '', '\begin{list}', '\end{list}')
 vnoremap ,de :call VEnclose('', '', '\begin{description}', '\end{description}')
 vnoremap <silent> ,en :call VEnclose('', '', '\begin{enumerate}', '\end{enumerate}')
@@ -73,13 +67,8 @@ vnoremap <silent> ,lr :call VEnclose('\sbox{', '}', '\begin{lrbox}', '\end{l
 vnoremap ,mp :call VEnclose('', '', '\begin{minipage}', '\end{minipage}')
 vnoremap ,pi :call VEnclose('', '', '\begin{picture}', '\end{picture}')
 vnoremap , :call ExecMap(',', 'v')
-nmap ,gq :%s/\s\+/ /ggq1G
-vmap ,gq :s/\s\+/ /ggvgq
-noremap ; :s/\([^;]\)$/\1;/
 map Q gq
 nmap <silent> S :let @x=@""_diw"xP
-vmap [% [%m'gv``
-vnoremap [ "zdi[z]
 nmap <silent> \cv <Plug>VCSVimDiff
 nmap <silent> \cu <Plug>VCSUpdate
 nmap <silent> \cU <Plug>VCSUnlock
@@ -97,6 +86,9 @@ nmap <silent> \cd <Plug>VCSDiff
 nmap <silent> \cD <Plug>VCSDelete
 nmap <silent> \cc <Plug>VCSCommit
 nmap <silent> \ca <Plug>VCSAdd
+map <silent> \ta <Plug>TRV_TransVimAsk
+nmap <silent> \tr <Plug>TRV_TransVimNormal
+vmap <silent> \tr <Plug>TRV_TransVimVisual
 map \t <Plug>TaskList
 nmap <silent> \ssl <Plug>SnippetsListSnippets
 nmap <silent> \ssd <Plug>SnippetsDeleteSnippet
@@ -116,9 +108,6 @@ nnoremap \gd :GitDiff
 nmap <silent> \bv :VSBufExplorer
 nmap <silent> \bs :HSBufExplorer
 nmap <silent> \be :BufExplorer
-vmap ]% ]%m'gv``
-nmap _j :%call Justify('tw',4)
-vmap _j :call Justify('tw',4)
 vnoremap <silent> `( :call VEnclose('\left( ', ' \right)', '\left(', '\right)')
 vnoremap <silent> `[ :call VEnclose('\left[ ', ' \right]', '\left[', '\right]')
 vnoremap <silent> `{ :call VEnclose('\left\{ ', ' \right\}', '\left\{', '\right\}')
@@ -134,25 +123,9 @@ vnoremap <silent> `sc :call VEnclose('\textsc{', '}', '{\scshape ', '}')
 vnoremap <silent> `it :call VEnclose('\textit{', '}', '{\itshape ', '}')
 vnoremap <silent> `em :call VEnclose('\emph{', '}', '{\em', '\/}')
 vnoremap ` :call ExecMap('`', 'v')
-vmap a% [%v]%
 nmap gx <Plug>NetrwBrowseX
 map g :cs find 0 =expand("<cword>")
 map g :cs find 3 =expand("<cword>")
-vnoremap { "zdi{z}
-nnoremap <SNR>49_ListSnippets :ListSnippets
-nnoremap <SNR>49_DeleteSnippet :DeleteSnippet
-nnoremap <SNR>49_EditSnippet :EditSnippet
-nnoremap <SNR>49_InsertSnippet :InsertSnippet
-nnoremap <SNR>49_AppendSnippet :AppendSnippet
-vnoremap <SNR>49_AddSnippet :AddSnippet
-nnoremap <SNR>49_AddSnippet :%AddSnippet
-nnoremap <SNR>46_ListSnippets :ListSnippets
-nnoremap <SNR>46_DeleteSnippet :DeleteSnippet
-nnoremap <SNR>46_EditSnippet :EditSnippet
-nnoremap <SNR>46_InsertSnippet :InsertSnippet
-nnoremap <SNR>46_AppendSnippet :AppendSnippet
-vnoremap <SNR>46_AddSnippet :AddSnippet
-nnoremap <SNR>46_AddSnippet :%AddSnippet
 nmap <silent> <Plug> i
 nmap <F1> <Plug>Tex_Help
 nnoremap <silent> <Plug>Tex_FastEnvironmentInsert i=Tex_FastEnvironmentInsert("no")
@@ -165,14 +138,6 @@ nnoremap <Plug>Tex_RefreshFolds :call MakeTexFolds(1)
 vnoremap <silent> <Plug>Tex_MathBF `>a}`<i\mathbf{
 vnoremap <silent> <Plug>Tex_MathCal `>a}`<i\mathcal{
 nnoremap <silent> <Plug>Tex_LeftRight :call Tex_PutLeftRight()
-nnoremap <silent> <Plug>CVSWatchRemove :CVSWatch remove
-nnoremap <silent> <Plug>CVSWatchOn :CVSWatch on
-nnoremap <silent> <Plug>CVSWatchOff :CVSWatch off
-nnoremap <silent> <Plug>CVSWatchAdd :CVSWatch add
-nnoremap <silent> <Plug>CVSWatchers :CVSWatchers
-nnoremap <silent> <Plug>CVSUnedit :CVSUnedit
-nnoremap <silent> <Plug>CVSEditors :CVSEditors
-nnoremap <silent> <Plug>CVSEdit :CVSEdit
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 nnoremap <silent> <Plug>VCSVimDiff :VCSVimDiff
 nnoremap <silent> <Plug>VCSUpdate :VCSUpdate
@@ -221,15 +186,7 @@ nmap <C-Space>g :scs find g =expand("<cword>")
 nmap <C-Space>s :scs find s =expand("<cword>")
 map <F5> :setlocal spell! spelllang=en_us
 map <S-Insert> <MiddleMouse>
-inoremap  :!phpm =expand("<cword>")
-inoremap 	 =InsertTabWrapper()
 imap <NL> <Plug>IMAP_JumpForward
-inoremap  :call PhpDocSingle()i
-inoremap " ""<Left>
-inoremap ' ''<Left>
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap { {}<Left>
 iabbr ezfctca fetch( content, tree_count, hash( 'parent_node_id', __ ,'attribute_filter', array( __ ) ) )
 iabbr ezfctc fetch( content, tree_count, hash( 'parent_node_id', __,'class_filter_type', include,'class_filter_array', array( __ )  ) )
 iabbr ezfctsa fetch( content, tree, hash( 'parent_node_id', __ ,'class_filter_type', include,'class_filter_array', array( __ ),'sort_by', array( __ ),'attribute_filter', array( __ ),'offset', $view_parameters.offset,'limit', __ ) )
@@ -247,45 +204,44 @@ iabbr ezfcl fetch( content, list, hash( 'parent_node_id', __ ,'class_filter_ty
 iabbr ezfcn fetch( content, node, hash( 'node_id', ) )3hi
 iabbr ezfes {foreach __ as $k => $val sequence array( __ ) as $seq}{/foreach}
 iabbr ezfe {foreach __ as $k => $val}{/foreach}
+iabbr ezas {$|attribute(show)}5bi
 abbr cv Ezcv
 let &cpo=s:cpo_save
 unlet s:cpo_save
-set background=dark
 set backspace=start,eol,indent
 set balloonexpr=eclim#util#Balloon(eclim#util#GetLineError(line('.')))
-set cmdheight=2
+set cpoptions=BceFs
 set cscopeprg=/usr/local/bin/cscope
 set cscopetag
 set cscopeverbose
-set dictionary=~/.vim/dict/actionscript.dict
-set errorfile=morandell_pflichtenfeft.log
 set fileencodings=ucs-bom,utf-8,default,latin1
 set foldclose=all
+set foldlevelstart=20
 set grepprg=grep\ -nH\ $*
 set helplang=de
 set history=50
 set iminsert=0
 set imsearch=0
 set incsearch
-set iskeyword=@,48-57,_,192-255,-,$
+set iskeyword=@,48-57,_,192-255,-,$,.,~,-,*,/
 set keywordprg=:help
 set laststatus=2
-set makeprg=/opt/flex/bin/mxmlc\ %
 set mouse=a
 set omnifunc=phpcomplete#CompletePHP
+set path=,,
 set printoptions=paper:a4
+set report=10000
 set ruler
-set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after,~/.vim/php,~/.vim/eclim,~/.vim/eclim/after
+set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim73,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after,~/.vim/php,~/.vim/eclim,~/.vim/eclim/after
 set scrolljump=5
 set scrolloff=3
 set shiftwidth=4
 set showcmd
 set softtabstop=4
-set spelllang=de
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set tabstop=4
 set termencoding=utf-8
-set window=50
+set window=55
 set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
@@ -295,38 +251,60 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +25 extension/cgo/design/ezwebin/templates/menu/flat_top.tpl
-badd +192 extension/cgo/design/ezwebin/templates/page_header.tpl
-badd +38 extension/cgo/design/ezwebin/override/templates/full/immobilienprojekte.tpl
-badd +44 extension/cgo/design/ezwebin/templates/parts/extra_info.tpl
-badd +11 extension/cgo/design/ezwebin/override/templates/line/immobilienprojekt.tpl
-badd +63 extension/cgo/design/ezwebin/override/templates/full/immobilienprojekt.tpl
-badd +20 extension/sfdocs/doc/readme.txt
+badd +48 extension/cgo/design/ezwebin/override/templates/full/anfrage.tpl
+badd +32 extension/cgo/design/ezwebin/override/templates/content/collectedinfo/form.tpl
+badd +6 design/standard/templates/content/datatype/collect/ezstring.tpl
+badd +1 extension/cgo/design/ezwebin/override/templates/line/immobilienprojekt.tpl
+badd +682 extension/cgo/design/ezwebin/stylesheets/cgo.css
+badd +10 extension/cgo/design/ezwebin/override/templates/full/frontpage.tpl
+badd +35 extension/cgo/design/ezwebin/templates/parts/hotline.tpl
+badd +152 settings/content.ini
+badd +38 settings/override/content.ini.append.php
+badd +0 extension/cgo/design/admin/templates/content/datatype/view/ezxmltags/blue.tpl
 silent! argdel *
-edit extension/cgo/design/ezwebin/override/templates/full/immobilienprojekt.tpl
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
+enew
+file extension/cgo/design/admin/templates/content/datatype/view/ezxmltags/blue.tpl
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer>  <Plug>NetrwHideEdit
+nmap <buffer>  <Plug>NetrwRefresh
+nnoremap <buffer> <silent> C :let g:netrw_chgwin= winnr()
+nnoremap <buffer> <silent> c :exe "keepjumps lcd ".fnameescape(b:netrw_curdir)
+nnoremap <buffer> <F1> :he netrw-quickhelp
+imap <buffer>  <Plug>NetrwHideEdit
+imap <buffer>  <Plug>NetrwRefresh
+inoremap <buffer> <silent> C :let g:netrw_chgwin= winnr()
+inoremap <buffer> <silent> c :exe "keepjumps lcd ".fnameescape(b:netrw_curdir)
+let &cpo=s:cpo_save
+unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
 setlocal balloonexpr=
 setlocal nobinary
-setlocal bufhidden=
+setlocal bufhidden=delete
 setlocal buflisted
-setlocal buftype=
+setlocal buftype=nofile
 setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
 setlocal define=
@@ -339,13 +317,12 @@ if &filetype != 'ezp'
 setlocal filetype=ezp
 endif
 setlocal foldcolumn=0
-setlocal nofoldenable
+setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=20
 setlocal foldmarker={{{,}}}
-set foldmethod=indent
-setlocal foldmethod=indent
+setlocal foldmethod=manual
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -360,7 +337,7 @@ setlocal includeexpr=
 setlocal indentexpr=
 setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255,-,$
+setlocal iskeyword=@,48-57,_,192-255,-,$,.,~,-,*,/
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
@@ -371,7 +348,7 @@ setlocal modeline
 setlocal modifiable
 setlocal nrformats=octal,hex
 set number
-setlocal number
+setlocal nonumber
 setlocal numberwidth=4
 setlocal omnifunc=phpcomplete#CompletePHP
 setlocal path=
@@ -379,6 +356,7 @@ setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
+setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -389,7 +367,7 @@ setlocal softtabstop=4
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
-setlocal spelllang=de
+setlocal spelllang=en
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -397,20 +375,15 @@ setlocal synmaxcol=3000
 if &syntax != 'ezp'
 setlocal syntax=ezp
 endif
-setlocal tabstop=4
+setlocal tabstop=32
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
+setlocal noundofile
 setlocal nowinfixheight
 setlocal nowinfixwidth
-setlocal wrap
+setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 76 - ((33 * winheight(0) + 24) / 49)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-76
-normal! 03l
 lcd /media/develop2/handschlag.cc
 tabnext 1
 if exists('s:wipebuf')

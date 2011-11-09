@@ -201,7 +201,7 @@ function! EzTplEnvironment()
     " content tree_count
     iabbrev ezfctc fetch( content, tree_count, hash( 'parent_node_id', __,<CR>'class_filter_type', include,<CR>'class_filter_array', array( __ )  ) )
     iabbrev ezfctca fetch( content, tree_count, hash( 'parent_node_id', __ ,<CR>'attribute_filter', array( __ ) ) )
-    iabbrev ezas {$\|attribute(show)}<ESC>5bi
+
 endfunction
 
 

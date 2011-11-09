@@ -6,4 +6,3 @@ au BufRead,BufNewFile *.tpl  set filetype=ezp
 au BufRead,BufNewFile *.ini.append.php set filetype=ezpini
 au BufRead,BufNewFile *.ini.append set filetype=ezpini
 au BufRead,BufNewFile *.ini set filetype=ezpini
-au BufRead,BufNewFile *.ini.*.php set filetype=ezpini

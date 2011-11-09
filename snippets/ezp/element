@@ -1,8 +1,0 @@
-			{include element = $elements.
-					class = '' 
-					uri='design:elements/input.tpl'
-					id=''
-					element_name=''
-					validate=''
-					tooltip=''|i18n('sfform/show','')
-					}

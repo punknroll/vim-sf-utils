@@ -1,636 +1,0 @@
-let SessionLoad = 1
-if &cp | set nocp | endif
-let s:cpo_save=&cpo
-set cpo&vim
-inoremap <silent> <Plug>Tex_Completion :call Tex_Complete("default","text")
-imap <silent> <Plug> <Nop>
-inoremap <silent> <Plug>Tex_LeftRight =Tex_LeftRight()
-inoremap <silent> <Plug>Tex_MathCal =Tex_MathCal()
-inoremap <silent> <Plug>Tex_MathBF =Tex_MathBF()
-inoremap <silent> <Plug>Tex_FastCommandChange :call Tex_ChangeCommand('no')
-inoremap <silent> <Plug>Tex_FastCommandInsert =Tex_DoCommand('no')
-inoremap <silent> <Plug>Tex_FastEnvironmentChange :call Tex_ChangeEnvironments()
-inoremap <silent> <Plug>Tex_FastEnvironmentInsert =Tex_FastEnvironmentInsert("no")
-imap <F1> <Plug>Tex_Help
-imap <silent> <Plug>IMAP_JumpBack =IMAP_Jumpfunc('b', 0)
-imap <silent> <Plug>IMAP_JumpForward =IMAP_Jumpfunc('', 0)
-map! <S-Insert> <MiddleMouse>
-vmap <NL> <Plug>IMAP_JumpForward
-nmap <NL> <Plug>IMAP_JumpForward
-nmap d :cs find d =expand("<cword>")
-nmap i :cs find i ^=expand("<cfile>")$
-nmap f :cs find f =expand("<cfile>")
-nmap e :cs find e =expand("<cword>")
-nmap t :cs find t =expand("<cword>")
-nmap c :cs find c =expand("<cword>")
-nmap g :cs find g =expand("<cword>")
-nmap s :cs find s =expand("<cword>")
-vnoremap , :call ExecMap(',', 'v')
-vnoremap ,pi :call VEnclose('', '', '\begin{picture}', '\end{picture}')
-vnoremap ,mp :call VEnclose('', '', '\begin{minipage}', '\end{minipage}')
-vnoremap <silent> ,lr :call VEnclose('\sbox{', '}', '\begin{lrbox}', '\end{lrbox}')
-vnoremap ,fi :call VEnclose('', '', '\begin{figure}', '\end{figure}')
-vnoremap ,pg :call VEnclose('\paragraph{', '}', '', '')
-vnoremap ,s2 :call VEnclose('\subsubsection{', '}', '', '')
-vnoremap ,ss :call VEnclose('\subsection{', '}', '', '')
-vnoremap ,se :call VEnclose('\section{', '}', '', '')
-vnoremap ,ch :call VEnclose('\chapter{', '}', '', '')
-vnoremap ,pa :call VEnclose('\part{', '}', '', '')
-vnoremap <silent> ,sl :call VEnclose('', '', '\begin{slide}', '\end{slide}')
-vnoremap <silent> ,ov :call VEnclose('', '', '\begin{overlay}', '\end{overlay}')
-vnoremap <silent> ,no :call VEnclose('', '', '\begin{note}', '\end{note}')
-vnoremap <silent> ,tb :call VEnclose('', '', '\begin{thebibliography}', '\end{thebibliography}')
-vnoremap <silent> ,ve :call VEnclose('', '', '\begin{verse}', '\end{verse}')
-vnoremap <silent> ,vm :call VEnclose('\verb|', '|', '\begin{verbatim}', '\end{verbatim}')
-vnoremap <silent> ,tp :call VEnclose('', '', '\begin{titlepage}', '\end{titlepage}')
-vnoremap ,sp :call VEnclose('\subparagraph{', '}', '', '')
-vnoremap <silent> ,qe :call VEnclose('', '', '\begin{quote}', '\end{quote}')
-vnoremap <silent> ,qn :call VEnclose('', '', '\begin{quotation}', '\end{quotation}')
-vnoremap <silent> ,fr :call VEnclose('{\raggedright ', '}', '\begin{flushright}', '\end{flushright}')
-vnoremap <silent> ,fl :call VEnclose('', '', '\begin{flushleft}', '\end{flushleft}')
-vnoremap <silent> ,fc :call VEnclose('', '', '\begin{filecontents}', '\end{filecontents}')
-vnoremap <silent> ,do :call VEnclose('', '', '\begin{document}', '\end{document}')
-vnoremap <silent> ,ce :call VEnclose('\centerline{', '}', '\begin{center}', '\end{center}')
-vnoremap <silent> ,ap :call VEnclose('', '', '\begin{appendix}', '\end{appendix}')
-vnoremap <silent> ,ab :call VEnclose('', '', '\begin{abstract}', '\end{abstract}')
-vnoremap <silent> ,ma :call VEnclose('', '', '\begin{math}', '\end{math}')
-vnoremap <silent> ,eq :call VEnclose('', '', '\begin{equation}', '\end{equation}')
-vnoremap <silent> ,ea :call VEnclose('', '', '\begin{eqnarray}', '\end{eqnarray}')
-vnoremap <silent> ,dm :call VEnclose('', '', '\begin{displaymath}', '\end{displaymath}')
-vnoremap ,ar :call VEnclose('', '', '\begin{array}', '\end{array}')
-vnoremap ,tr :call VEnclose('', '', '\begin{tabular}', '\end{tabular}')
-vnoremap <silent> ,tg :call VEnclose('', '', '\begin{tabbing}', '\end{tabbing}')
-vnoremap ,te :call VEnclose('', '', '\begin{table}', '\end{table}')
-vnoremap <silent> ,tl :call VEnclose('', '', '\begin{trivlist}', '\end{trivlist}')
-vnoremap <silent> ,ti :call VEnclose('', '', '\begin{theindex}', '\end{theindex}')
-vnoremap <silent> ,it :call VEnclose('', '', '\begin{itemize}', '\end{itemize}')
-vnoremap <silent> ,en :call VEnclose('', '', '\begin{enumerate}', '\end{enumerate}')
-vnoremap ,de :call VEnclose('', '', '\begin{description}', '\end{description}')
-vnoremap ,li :call VEnclose('', '', '\begin{list}', '\end{list}')
-map Q gq
-nmap <silent> S :let @x=@""_diw"xP
-nmap <silent> \cv <Plug>VCSVimDiff
-nmap <silent> \cu <Plug>VCSUpdate
-nmap <silent> \cU <Plug>VCSUnlock
-nmap <silent> \cs <Plug>VCSStatus
-nmap <silent> \cr <Plug>VCSReview
-nmap <silent> \cq <Plug>VCSRevert
-nmap <silent> \cn <Plug>VCSAnnotate
-nmap <silent> \cN <Plug>VCSSplitAnnotate
-nmap <silent> \cl <Plug>VCSLog
-nmap <silent> \cL <Plug>VCSLock
-nmap <silent> \ci <Plug>VCSInfo
-nmap <silent> \cg <Plug>VCSGotoOriginal
-nmap <silent> \cG <Plug>VCSClearAndGotoOriginal
-nmap <silent> \cd <Plug>VCSDiff
-nmap <silent> \cD <Plug>VCSDelete
-nmap <silent> \cc <Plug>VCSCommit
-nmap <silent> \ca <Plug>VCSAdd
-map \t <Plug>TaskList
-nnoremap \gp :GitPullRebase
-nnoremap \gc :GitCommit
-nnoremap \gA :GitAdd <cfile>
-nnoremap \ga :GitAdd
-nnoremap \gl :GitLog
-nnoremap \gs :GitStatus
-nnoremap \gD :GitDiff --cached
-nnoremap \gd :GitDiff
-nmap <silent> \bv :VSBufExplorer
-nmap <silent> \bs :HSBufExplorer
-nmap <silent> \be :BufExplorer
-vnoremap ` :call ExecMap('`', 'v')
-vnoremap <silent> `em :call VEnclose('\emph{', '}', '{\em', '\/}')
-vnoremap <silent> `it :call VEnclose('\textit{', '}', '{\itshape ', '}')
-vnoremap <silent> `sc :call VEnclose('\textsc{', '}', '{\scshape ', '}')
-vnoremap <silent> `sl :call VEnclose('\textsl{', '}', '{\slshape ', '}')
-vnoremap <silent> `up :call VEnclose('\textup{', '}', '{\upshape ', '}')
-vnoremap <silent> `rm :call VEnclose('\textrm{', '}', '{\rmfamily ', '}')
-vnoremap <silent> `sf :call VEnclose('\textsf{', '}', '{\sffamily ', '}')
-vnoremap <silent> `tt :call VEnclose('\texttt{', '}', '{\ttfamily ', '}')
-vnoremap <silent> `md :call VEnclose('\textmd{', '}', '{\mdseries ', '}')
-vnoremap <silent> `bf :call VEnclose('\textbf{', '}', '{\bfseries ', '}')
-vnoremap <silent> `$ :call VEnclose('$', '$', '\[', '\]')
-vnoremap <silent> `{ :call VEnclose('\left\{ ', ' \right\}', '\left\{', '\right\}')
-vnoremap <silent> `[ :call VEnclose('\left[ ', ' \right]', '\left[', '\right]')
-vnoremap <silent> `( :call VEnclose('\left( ', ' \right)', '\left(', '\right)')
-nmap gx <Plug>NetrwBrowseX
-map g :cs find 0 =expand("<cword>")
-map g :cs find 3 =expand("<cword>")
-nnoremap <silent> <Plug>CVSEdit :CVSEdit
-nnoremap <silent> <Plug>CVSEditors :CVSEditors
-nnoremap <silent> <Plug>CVSUnedit :CVSUnedit
-nnoremap <silent> <Plug>CVSWatchers :CVSWatchers
-nnoremap <silent> <Plug>CVSWatchAdd :CVSWatch add
-nnoremap <silent> <Plug>CVSWatchOff :CVSWatch off
-nnoremap <silent> <Plug>CVSWatchOn :CVSWatch on
-nnoremap <silent> <Plug>CVSWatchRemove :CVSWatch remove
-nnoremap <silent> <Plug>Tex_LeftRight :call Tex_PutLeftRight()
-vnoremap <silent> <Plug>Tex_MathCal `>a}`<i\mathcal{
-vnoremap <silent> <Plug>Tex_MathBF `>a}`<i\mathbf{
-nnoremap <Plug>Tex_RefreshFolds :call MakeTexFolds(1)
-nnoremap <silent> <Plug>Tex_FastCommandChange :call Tex_ChangeCommand('no')
-vnoremap <silent> <Plug>Tex_FastCommandInsert :call Tex_DoCommand('yes')
-nnoremap <silent> <Plug>Tex_FastCommandInsert i=Tex_DoCommand('no')
-nnoremap <silent> <Plug>Tex_FastEnvironmentChange :call Tex_ChangeEnvironments()
-vnoremap <silent> <Plug>Tex_FastEnvironmentInsert :call Tex_FastEnvironmentInsert("yes")
-nnoremap <silent> <Plug>Tex_FastEnvironmentInsert i=Tex_FastEnvironmentInsert("no")
-nmap <F1> <Plug>Tex_Help
-nmap <silent> <Plug> i
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
-nnoremap <silent> <Plug>VCSVimDiff :VCSVimDiff
-nnoremap <silent> <Plug>VCSUpdate :VCSUpdate
-nnoremap <silent> <Plug>VCSUnlock :VCSUnlock
-nnoremap <silent> <Plug>VCSStatus :VCSStatus
-nnoremap <silent> <Plug>VCSSplitAnnotate :VCSAnnotate!
-nnoremap <silent> <Plug>VCSReview :VCSReview
-nnoremap <silent> <Plug>VCSRevert :VCSRevert
-nnoremap <silent> <Plug>VCSLog :VCSLog
-nnoremap <silent> <Plug>VCSLock :VCSLock
-nnoremap <silent> <Plug>VCSInfo :VCSInfo
-nnoremap <silent> <Plug>VCSClearAndGotoOriginal :VCSGotoOriginal!
-nnoremap <silent> <Plug>VCSGotoOriginal :VCSGotoOriginal
-nnoremap <silent> <Plug>VCSDiff :VCSDiff
-nnoremap <silent> <Plug>VCSDelete :VCSDelete
-nnoremap <silent> <Plug>VCSCommit :VCSCommit
-nnoremap <silent> <Plug>VCSAnnotate :VCSAnnotate
-nnoremap <silent> <Plug>VCSAdd :VCSAdd
-vmap <silent> <Plug>IMAP_JumpBack `<i=IMAP_Jumpfunc('b', 0)
-vmap <silent> <Plug>IMAP_JumpForward i=IMAP_Jumpfunc('', 0)
-vmap <silent> <Plug>IMAP_DeleteAndJumpBack "_<Del>i=IMAP_Jumpfunc('b', 0)
-vmap <silent> <Plug>IMAP_DeleteAndJumpForward "_<Del>i=IMAP_Jumpfunc('', 0)
-nmap <silent> <Plug>IMAP_JumpBack i=IMAP_Jumpfunc('b', 0)
-nmap <silent> <Plug>IMAP_JumpForward i=IMAP_Jumpfunc('', 0)
-nmap <C-Space><C-Space>d:vert scs find d =expand("<cword>")
-nmap <C-Space><C-Space>i:vert scs find i ^=expand("<cfile>")$
-nmap <C-Space><C-Space>e:vert scs find e =expand("<cword>")
-nmap <C-Space><C-Space>t:vert scs find t =expand("<cword>")
-nmap <C-Space><C-Space>c:vert scs find c =expand("<cword>")
-nmap <C-Space><C-Space>g:vert scs find g =expand("<cword>")
-nmap <C-Space><C-Space>s:vert scs find s =expand("<cword>")
-nmap <C-Space>d :scs find d =expand("<cword>")
-nmap <C-Space>i :scs find i ^=expand("<cfile>")$
-nmap <C-Space>f :scs find f =expand("<cfile>")
-nmap <C-Space>e :scs find e =expand("<cword>")
-nmap <C-Space>t :scs find t =expand("<cword>")
-nmap <C-Space>c :scs find c =expand("<cword>")
-nmap <C-Space>g :scs find g =expand("<cword>")
-nmap <C-Space>s :scs find s =expand("<cword>")
-map <F5> :setlocal spell! spelllang=en_us
-map <S-Insert> <MiddleMouse>
-imap <NL> <Plug>IMAP_JumpForward
-abbr cv Ezcv
-let &cpo=s:cpo_save
-unlet s:cpo_save
-set background=dark
-set backspace=start,eol,indent
-set balloonexpr=eclim#util#Balloon(eclim#util#GetLineError(line('.')))
-set cscopeprg=/usr/local/bin/cscope
-set cscopetag
-set cscopeverbose
-set errorfile=tiroler.at_pflichtenfeft.log
-set fileencodings=ucs-bom,utf-8,default,latin1
-set foldclose=all
-set grepprg=grep\ -nH\ $*
-set helplang=de
-set history=50
-set iminsert=0
-set imsearch=0
-set incsearch
-set iskeyword=@,48-57,192-255,:
-set laststatus=2
-set mouse=a
-set printoptions=paper:a4
-set ruler
-set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after,~/.vim/php,~/.vim/eclim,~/.vim/eclim/after
-set scrolljump=5
-set scrolloff=3
-set shiftwidth=2
-set showcmd
-set softtabstop=4
-set spelllang=de
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-set tabstop=4
-set termencoding=utf-8
-set window=51
-set nowritebackup
-let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
-let v:this_session=expand("<sfile>:p")
-silent only
-cd /media/win2003/Projekte/tirolerversicherung/administration/pflichtenheft
-if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
-  let s:wipebuf = bufnr('%')
-endif
-set shortmess=aoO
-badd +395 tiroler.at_pflichtenfeft.tex
-badd +165 tiroler.at_pflichtenfeft.log
-silent! argdel *
-edit tiroler.at_pflichtenfeft.tex
-set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-set nosplitbelow
-set nosplitright
-wincmd t
-set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 46 + 26) / 52)
-exe '2resize ' . ((&lines * 3 + 26) / 52)
-argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-imap <buffer> <silent> <F9> <Plug>Tex_Completion
-imap <buffer> <C-CR> <Plug>Tex_InsertItemOnNextLine
-imap <buffer> <silent> <S-F7> <Plug>Tex_FastCommandChange
-imap <buffer> <silent> <F7> <Plug>Tex_FastCommandInsert
-inoremap <buffer> <silent> <S-F3> =Tex_PutEnvironment("bmatrix")
-inoremap <buffer> <silent> <S-F2> =Tex_PutEnvironment("eqnarray")
-inoremap <buffer> <silent> <S-F1> =Tex_PutEnvironment("eqnarray*")
-imap <buffer> <silent> <S-F5> <Plug>Tex_FastEnvironmentChange
-imap <buffer> <silent> <F5> <Plug>Tex_FastEnvironmentInsert
-imap <buffer> <silent> ì <Plug>Tex_LeftRight
-imap <buffer> <silent> ã <Plug>Tex_MathCal
-imap <buffer> <silent> â <Plug>Tex_MathBF
-imap <buffer> é <Plug>Tex_InsertItemOnThisLine
-nmap <buffer> <silent> \rf <Plug>Tex_RefreshFolds
-nmap <buffer> \ls <Plug>Tex_ForwardSearch
-nmap <buffer> \lv <Plug>Tex_View
-vmap <buffer> \ll <Plug>Tex_Compile
-nmap <buffer> \ll <Plug>Tex_Compile
-nnoremap <buffer> <Plug>Tex_ForwardSearch :call Tex_ForwardSearchLaTeX()
-nnoremap <buffer> <Plug>Tex_View :call Tex_ViewLaTeX()
-vnoremap <buffer> <Plug>Tex_Compile :call Tex_PartCompile()
-nnoremap <buffer> <Plug>Tex_Compile :call Tex_RunLaTeX()
-vmap <buffer> <silent> <F7> <Plug>Tex_FastCommandInsert
-nmap <buffer> <silent> <S-F7> <Plug>Tex_FastCommandChange
-nmap <buffer> <silent> <F7> <Plug>Tex_FastCommandInsert
-nmap <buffer> <silent> <S-F5> <Plug>Tex_FastEnvironmentChange
-vmap <buffer> <silent> <F5> <Plug>Tex_FastEnvironmentInsert
-nmap <buffer> <silent> <F5> <Plug>Tex_FastEnvironmentInsert
-nmap <buffer> <silent> ì <Plug>Tex_LeftRight
-vmap <buffer> <silent> ã <Plug>Tex_MathCal
-vmap <buffer> <silent> â <Plug>Tex_MathBF
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%
-setlocal commentstring=%%s
-setlocal complete=.,w,b,u,t,i
-setlocal completefunc=
-setlocal nocopyindent
-setlocal nocursorcolumn
-setlocal nocursorline
-setlocal define=\\\\\\([egx]\\|char\\|mathchar\\|count\\|dimen\\|muskip\\|skip\\|toks\\)\\=def\\|\\\\font\\|\\\\\\(future\\)\\=let\\|\\\\new\\(count\\|dimen\\|skip\\|muskip\\|box\\|toks\\|read\\|write\\|fam\\|insert\\)\\|\\\\\\(re\\)\\=new\\(boolean\\|command\\|counter\\|environment\\|font\\|if\\|length\\|savebox\\|theorem\\(style\\)\\=\\)\\s*\\*\\=\\s*{\\=\\|DeclareMathOperator\\s*{\\=\\s*
-setlocal dictionary=~/.vim/ftplugin/latex-suite/dictionaries/dictionary
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=%*[^\"]\"%f\"%*\\D%l:\ %m,\"%f\"%*\\D%l:\ %m,%-G%f:%l:\ (Each\ undeclared\ identifier\ is\ reported\ only\ once,%-G%f:%l:\ for\ each\ function\ it\ appears\ in.),%f:%l:%c:%m,%f(%l):%m,%f:%l:%m,\"%f\"\\,\ line\ %l%*\\D%c%*[^\ ]\ %m,%D%*\\a[%*\\d]:\ Entering\ directory\ `%f',%X%*\\a[%*\\d]:\ Leaving\ directory\ `%f',%D%*\\a:\ Entering\ directory\ `%f',%X%*\\a:\ Leaving\ directory\ `%f',%DMaking\ %*\\a\ in\ %f,%f|%l|\ %m,%-G%.%#Underfull%.%#,%-G%.%#Overfull%.%#,%-G%.%#specifier\ changed\ to%.%#,%-G%.%#You\ have\ requested%.%#,%-G%.%#Missing\ number%\\,\ treated\ as\ zero.%.%#,%-G%.%#There\ were\ undefined\ references%.%#,%-G%.%#Citation\ %.%#\ undefined%.%#,%E!\ LaTeX\ %trror:\ %m,%E!\ %m,%E%f:%l:\ %m,%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,%+W%.%#\ at\ lines\ %l--%*\\d,%+WLaTeX\ %.%#Warning:\ %m,%-Cl.%l\ %m,%-Cl.%l\ ,%-C\ \ %m,%-C%.%#-%.%#,%-C%.%#[]%.%#,%-C[]%.%#,%-C%.%#%[{}\\]%.%#,%-C<%.%#>%m,%-GSee\ the\ LaTeX%m,%-GType\ \ H\ <return>%m,%-G\ ...%.%#,%-G%.%#\ (C)\ %.%#,%-G(see\ the\ transcript%.%#),%-G\\s%#,%-O(%*[^()])%r,%-P(%f%r,%-P\ %\\=(%f%r,%-P%*[^()](%f%r,%-P(%f%*[^()],%-P[%\\d%[^()]%#(%f%r,%-P%*[^()],%-Q)%r,%-Q%*[^()])%r,%-Q[%\\d%*[^()])%r,%-Q%*[^()],%-G%.%#
-setlocal noexpandtab
-if &filetype != 'tex'
-setlocal filetype=tex
-endif
-setlocal foldcolumn=0
-setlocal nofoldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=TexFoldTextFunction()
-setlocal formatexpr=
-setlocal formatoptions=tcq
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
-setlocal include=\\\\input\\|\\\\include{
-setlocal includeexpr=substitute(v:fname,\ '^.\\{-}{\\|}.*',\ '',\ 'g')
-setlocal indentexpr=GetTeXIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,},=\\item,=\\bibitem
-setlocal noinfercase
-setlocal iskeyword=@,48-57,192-255,:
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=pdflatex\ -interaction=nonstopmode\ $*
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=4
-set spell
-setlocal spell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=~/.vim/spell/de.utf-8.add
-setlocal spelllang=de
-setlocal statusline=
-setlocal suffixesadd=.tex
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'tex'
-setlocal syntax=tex
-endif
-setlocal tabstop=4
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal winfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-silent! normal! zE
-1,33fold
-38,41fold
-37,59fold
-76,78fold
-79,82fold
-83,85fold
-97,97fold
-98,98fold
-99,99fold
-100,100fold
-107,107fold
-108,108fold
-109,109fold
-103,113fold
-94,113fold
-116,116fold
-117,117fold
-114,123fold
-124,127fold
-136,136fold
-137,137fold
-138,138fold
-139,139fold
-140,140fold
-147,147fold
-148,148fold
-149,149fold
-150,150fold
-151,151fold
-152,152fold
-143,184fold
-128,184fold
-189,193fold
-194,197fold
-186,197fold
-202,202fold
-203,203fold
-204,204fold
-205,205fold
-208,218fold
-221,221fold
-222,222fold
-223,223fold
-224,224fold
-225,225fold
-219,228fold
-231,231fold
-232,232fold
-233,233fold
-234,234fold
-235,235fold
-229,236fold
-237,252fold
-256,256fold
-257,257fold
-258,258fold
-253,261fold
-264,264fold
-265,265fold
-266,266fold
-267,267fold
-268,268fold
-269,269fold
-270,270fold
-271,271fold
-272,272fold
-273,273fold
-262,275fold
-278,279fold
-280,281fold
-282,283fold
-276,285fold
-288,288fold
-289,289fold
-290,290fold
-291,291fold
-292,292fold
-293,294fold
-295,295fold
-286,297fold
-298,305fold
-198,305fold
-306,322fold
-324,344fold
-345,347fold
-351,378fold
-386,386fold
-387,388fold
-389,389fold
-390,390fold
-391,391fold
-392,392fold
-379,416fold
-417,421fold
-348,421fold
-422,437fold
-439,455fold
-456,459fold
-323,459fold
-473,473fold
-474,474fold
-475,475fold
-467,477fold
-461,477fold
-479,481fold
-482,484fold
-501,522fold
-523,532fold
-533,542fold
-543,566fold
-485,566fold
-567,569fold
-570,583fold
-584,588fold
-589,594fold
-478,594fold
-600,603fold
-604,608fold
-612,624fold
-625,629fold
-632,632fold
-633,639fold
-595,639fold
-86,639fold
-37
-normal zo
-38
-normal zc
-37
-normal zc
-76
-normal zc
-79
-normal zc
-83
-normal zc
-let s:l = 395 - ((16 * winheight(0) + 23) / 46)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-395
-normal! 0
-wincmd w
-argglobal
-enew
-nnoremap <buffer> <silent>  :call Tex_GotoErrorLocation("tiroler.at_pflichtenfeft.log")
-nnoremap <buffer> <silent> j j:call Tex_UpdatePreviewWindow("tiroler.at_pflichtenfeft.log")
-nnoremap <buffer> <silent> k k:call Tex_UpdatePreviewWindow("tiroler.at_pflichtenfeft.log")
-let s:cpo_save=&cpo
-set cpo&vim
-nnoremap <buffer> <silent> <Down> <Down>:call Tex_UpdatePreviewWindow("tiroler.at_pflichtenfeft.log")
-nnoremap <buffer> <silent> <Up> <Up>:call Tex_UpdatePreviewWindow("tiroler.at_pflichtenfeft.log")
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal noautoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=wipe
-setlocal buflisted
-setlocal buftype=quickfix
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal completefunc=
-setlocal nocopyindent
-setlocal nocursorcolumn
-setlocal nocursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal noexpandtab
-if &filetype != 'qf'
-setlocal filetype=qf
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=tcq
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,192-255,:
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal nomodifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=4
-set spell
-setlocal spell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=de
-setlocal statusline=
-setlocal suffixesadd=
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != 'qf'
-setlocal syntax=qf
-endif
-setlocal tabstop=4
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal winfixheight
-setlocal nowinfixwidth
-setlocal nowrap
-setlocal wrapmargin=0
-wincmd w
-exe '1resize ' . ((&lines * 46 + 26) / 52)
-exe '2resize ' . ((&lines * 3 + 26) / 52)
-tabnext 1
-if exists('s:wipebuf')
-  silent exe 'bwipe ' . s:wipebuf
-endif
-unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToO
-let s:sx = expand("<sfile>:p:r")."x.vim"
-if file_readable(s:sx)
-  exe "source " . fnameescape(s:sx)
-endif
-let &so = s:so_save | let &siso = s:siso_save
-doautoall SessionLoadPost
-unlet SessionLoad
-" vim: set ft=vim :

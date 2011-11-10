@@ -47,7 +47,23 @@ autocmd BufNewFile,BufRead *.tpl call EzTplEnvironment()
 command! -nargs=1 -bar Ezcv call Ezcv('<args>')
 abbreviate cv Ezcv
 
-pyf ~/.vim/plugin/ez.py
+" pyf ~/.vim/plugin/ez.py
+
+if filereadable($VIMRUNTIME."/bundle/vim-config/plugin/ez.py")
+	  pyfile $VIMRUNTIME/bundle/vim-config/plugin/ez.py
+	elseif filereadable($HOME."/.vim/bundle/vim-config/plugin/ez.py")
+	  pyfile $HOME/.vim/bundle/vim-config/plugin/ez.py
+	elseif filereadable($VIMRUNTIME."/plugin/ez.py")
+	  pyfile $VIMRUNTIME/plugin/ez.py
+	elseif filereadable($HOME."/.vim/plugin/ez.py")
+	  pyfile $HOME/.vim/plugin/ez.py
+	elseif filereadable($VIM."/vimfiles/plugin/ez.py")
+	  pyfile $VIM/vimfiles/plugin/ez.py
+	else
+	  call confirm('ez.vim: Unable to find ez.py. Place it in either your home vim directory or in the Vim runtime directory.', 'OK')
+	endif
+
+
 function! Ezcv(siteurl)
     let winnum = bufwinnr(g:EzSideBarName)
     let python_func = 'py eZClassesView("'.a:siteurl.'")'

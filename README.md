@@ -4,4 +4,5 @@ configuration of https://github.com/spf13/spf13-vim.
 You can add this plugin with like this:
 
 cd ~/.vim/bundle
+
 git clone git@github.com:punknroll/vim-config.git

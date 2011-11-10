@@ -1,0 +1,10 @@
+colorscheme tolerable
+set number
+set noexpandtab
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set nolist
+
+
+au BufNewFile,BufRead *.tpl set filetype=ezp
